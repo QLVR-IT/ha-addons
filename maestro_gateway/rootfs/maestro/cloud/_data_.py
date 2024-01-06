@@ -8,7 +8,7 @@ Tables des correspondances
 '''
 RecuperoInfo=[
 	[1,"Kachel status",[
-						[0, "Uit"],
+						[0, "Off"],
 						[1, "Controle warm/koud"],
 						[2, "Reinigen koud"],
 						[3, "Pellets laden koud"],
@@ -25,7 +25,7 @@ RecuperoInfo=[
 						[14, "Vermogen 4"],
 						[15, "Vermogen 5"],
 						[30, "Diagnose"],
-						[31, "Aan"],
+						[31, "On"],
 						[40, "Doven"],
 						[41, "Afkoelen 1"],
 						[42, "Reinigen laag"],
@@ -109,7 +109,7 @@ RecuperoInfo=[
 					[10, "Aangepast"],
 					]],
 	[20,"Actieve modus",[
-					[0, "Uit"],
+					[0, "Off"],
 					[1, "Ann"],
 					]],  #0: Désactivé, 1: Activé
 	[21,"ACTIVE - Live"],
@@ -118,16 +118,16 @@ RecuperoInfo=[
 							[1, "Dynamisch"],
 							]],
 	[23,"ECO-modus",[
-					[0, "Uit"],
-					[1, "Aan"],
+					[0, "Off"],
+					[1, "On"],
 					]],
 	[24,"Stil",[
-					[0, "Uit"],
-					[1, "Aan"],
+					[0, "Off"],
+					[1, "On"],
 					]],
 	[25,"Chronotermostaat mode",[
-					[0, "Uit"],
-					[1, "Aan"],
+					[0, "Off"],
+					[1, "On"],
 					]],
 	[26,"TEMP - Ingesteld"],
 	[27,"TEMP - Boiler"],
@@ -159,16 +159,16 @@ RecuperoInfo=[
 						[11, "Bijna leeg"],
 						]],
 	[48,"Geluidseffect",[
-					[0, "Uit"],
-					[1, "Aan"],
+					[0, "Off"],
+					[1, "On"],
 					]],
 	[49,"Staat geluidseffecten",[
-					[0, "Uit"],
-					[1, "Aan"],
+					[0, "Off"],
+					[1, "On"],
 					]],
 	[50,"Sleep",[
-					[0, "Uit"],
-					[1, "Aan"],
+					[0, "Off"],
+					[1, "On"],
 					]],
 	[51,"Mode",[
 				[0, "Winter"],
@@ -183,8 +183,8 @@ RecuperoInfo=[
 	[58,"Set Health"], # !==Hydro
 	[59,"Temperature retour"],
 	[60,"Antivries",[
-					[0, "Uit"],
-					[1, "Aan"],
+					[0, "Off"],
+					[1, "On"],
 					]],
 	]
 	
