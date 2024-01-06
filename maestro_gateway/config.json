@@ -6,7 +6,6 @@
   "url": "https://github.com/QLVR-IT/ha-addons/tree/main/maestro_gateway",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "init": false,
-  "image": "https://www.qlvr-it.nl/images/7/a/a/e/9/7aae98b0d9f5e563d21cea958d7dae1f9a6cec3e-logo-verticaal.png",
   "options": {
     "USE_MCZ_CLOUD": true,
     "MQTT_ip": "core-mosquitto",
