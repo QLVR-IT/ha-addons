@@ -48,26 +48,26 @@ class PileFifo(object):
 
     def empile(self, element, idx=0):
         if (self.maxpile != None) and (len(self.pile) == self.maxpile):
-            raise ValueError("erreur: tentative d'empiler dans une pile pleine")
+            raise ValueError("error: trying to stack into a full stack")
         self.pile.insert(idx, element)
 
     def depile(self, idx=-1):
         if len(self.pile) == 0:
-            raise ValueError("erreur: tentative de depiler une pile vide")
+            raise ValueError("error: trying to pop an empty stack")
         if idx < -len(self.pile) or idx >= len(self.pile):
-            raise ValueError("erreur: element de pile à depiler n'existe pas")
+            raise ValueError("error: stack element to be unstacked does not exist")
         return self.pile.pop(idx)
 
     def element(self, idx=-1):
         if idx < -len(self.pile) or idx >= len(self.pile):
-            raise ValueError("erreur: element de pile à lire n'existe pas")
+            raise ValueError("error: stack element to read does not exist")
         return self.pile[idx]
 
     def copiepile(self, imin=0, imax=None):
         if imax == None:
             imax = len(self.pile)
         if imin < 0 or imax > len(self.pile) or imin >= imax:
-            raise ValueError("erreur: mauvais indice(s) pour l'extraction par copiepile")
+            raise ValueError("error: bad index(es) for copypile extraction")
         return list(self.pile[imin:imax])
 
     def pilevide(self):
@@ -158,7 +158,7 @@ def rispondo(response):
                             MQTT_MAESTRO[RecuperoInfo[j][1]] = RecuperoInfo[j][2][k][1]
                             break
                         else:
-                            MQTT_MAESTRO[RecuperoInfo[j][1]] = ('Code inconnu :', str(int(datas[i], 16)))
+                            MQTT_MAESTRO[RecuperoInfo[j][1]] = ('Unknown code :', str(int(datas[i], 16)))
                 else:
                     if i == 6 or i == 26 or i == 28:
                         MQTT_MAESTRO[RecuperoInfo[j][1]] = float(int(datas[i], 16)) / 2
@@ -167,7 +167,7 @@ def rispondo(response):
                         MQTT_MAESTRO[RecuperoInfo[j][1]] = secTOdhms(int(datas[i], 16))
                     else:
                         MQTT_MAESTRO[RecuperoInfo[j][1]] = int(datas[i], 16)
-    logger.info('Publication sur le topic MQTT ' + str(_MQTT_TOPIC_PUB) + ' le message suivant : ' + str(
+    logger.info('Publication on the MQTT topic ' + str(_MQTT_TOPIC_PUB) + ' the following message : ' + str(
         json.dumps(MQTT_MAESTRO)))
     client.publish(_MQTT_TOPIC_PUB, json.dumps(MQTT_MAESTRO), 1)
 
@@ -177,7 +177,7 @@ def receive(*args):
         time.sleep(30)
         logger.info("Websocket still connected ? " + str(sio.connected))
         if sio.connected:
-            logger.info("Envoi de la commande pour rafraichir les donnees")
+            logger.info("Sending the command to refresh the data")
             sio.emit(
                 "chiedo",
                 {
@@ -201,7 +201,7 @@ def send():
             if Message_MQTT.pilevide():
                 Message_MQTT.empile("C|RecuperoInfo")
             cmd = Message_MQTT.depile()
-            logger.info("Envoi de la commande : " + str(cmd))
+            logger.info("Sending command : " + str(cmd))
             sio.emit(
               "chiedo",
                {
@@ -226,14 +226,14 @@ _TEMPS_SESSION = 60
 
 MQTT_MAESTRO = {}
 
-logger.info('Lancement du deamon')
+logger.info('Launching the daemon')
 logger.info('Anthony L. 2019')
 logger.info("Pipolaq's version")
-logger.info('Niveau de LOG : DEBUG')
+logger.info('LOG Level : DEBUG')
 
 sio.connect(_MCZ_App_URL)
 
-logger.info('Connection en cours au broker MQTT (IP:' + _MQTT_ip + ' PORT:' + str(_MQTT_port) + ')')
+logger.info('Connection in progress to the MQTT broker (IP:' + _MQTT_ip + ' PORT:' + str(_MQTT_port) + ')')
 client = mqtt.Client()
 if _MQTT_authentication:
     client.username_pw_set(username=_MQTT_user, password=_MQTT_pass)

@@ -1,10 +1,10 @@
-#coding: utf-8
+# coding: utf-8
 
 '''
-Tables des correspondances
-	Le rang 0 correspond à la position de l'information dans la trame MAESTRO
-	Le rang 1 correspond a l'intitulé publié sur le broker
-	Le rang 2 (optionnel) permet de remplacer le code de la trame par une information texte correspondante
+Correspondence tables
+Rank 0 corresponds to the position of the information in the MAESTRO frame
+Rank 1 corresponds to the title published on the broker
+Rank 2 (optional) allows you to replace the frame code with corresponding text information
 '''
 RecuperoInfo=[
 	[1,"Kachel status",[

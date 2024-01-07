@@ -37,9 +37,9 @@ _VERSION = '1.5'
 " > /maestro/cloud/_config_.py
 
 if bashio::config.true 'USE_MCZ_CLOUD'; then
-    bashio::log.info "Launching maestro cloud connection plugin"
+    bashio::log.info "Launching MCZ cloud connection plugin"
     python3 /maestro/cloud/maestro.py
 else
-    bashio::log.info "Launching maestro local connection plugin"
+    bashio::log.info "Launching MCZ local connection plugin"
     python3 /maestro/local/maestro.py
 fi

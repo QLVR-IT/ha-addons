@@ -1,7 +1,7 @@
 # coding: utf-8
 
 '''
-Fichier pour l'adressage des différents équipement
+File for addressing the settings
 
 '''
 _MQTT_ip = '127.0.0.1'                  # Adresse IP du broker mqtt
