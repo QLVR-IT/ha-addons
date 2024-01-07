@@ -109,7 +109,7 @@ RecuperoInfo=[
 					]],
 	[20,"Actieve modus",[
 					[0, "Uit"],
-					[1, "Ann"],
+					[1, "Aan"],
 					]],  #0: Désactivé, 1: Activé
 	[21,"ACTIVE - Live"],
 	[22,"Regelmodus",[
