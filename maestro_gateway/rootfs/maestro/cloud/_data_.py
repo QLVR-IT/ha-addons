@@ -7,7 +7,7 @@ Rank 2 (optional) allows you to replace the frame code with corresponding text i
 '''
 RecuperoInfo=[
 	[1,"Kachel status",[
-						[0, "Off"],
+						[0, "Uit"],
 						[1, "Controle warm/koud"],
 						[2, "Reinigen koud"],
 						[3, "Pellets laden koud"],
@@ -24,7 +24,7 @@ RecuperoInfo=[
 						[14, "Vermogen 4"],
 						[15, "Vermogen 5"],
 						[30, "Diagnose"],
-						[31, "On"],
+						[31, "Aan"],
 						[40, "Doven"],
 						[41, "Afkoelen 1"],
 						[42, "Reinigen laag"],
@@ -108,7 +108,7 @@ RecuperoInfo=[
 					[10, "Aangepast"],
 					]],
 	[20,"Actieve modus",[
-					[0, "Off"],
+					[0, "Uit"],
 					[1, "Ann"],
 					]],  #0: Désactivé, 1: Activé
 	[21,"ACTIVE - Live"],
@@ -117,20 +117,20 @@ RecuperoInfo=[
 							[1, "Dynamisch"],
 							]],
 	[23,"ECO-modus",[
-					[0, "Off"],
-					[1, "On"],
+					[0, "Uit"],
+					[1, "Aan"],
 					]],
 	[24,"Stil",[
-					[0, "Off"],
-					[1, "On"],
+					[0, "Uit"],
+					[1, "Aan"],
 					]],
 	[25,"Chronotermostaat mode",[
-					[0, "Off"],
-					[1, "On"],
+					[0, "Uit"],
+					[1, "Aan"],
 					]],
-	[26,"TEMP - Ingesteld"],
-	[27,"TEMP - Boiler"],
-	[28,"TEMP - Moederbord"],
+	[26,"Temperatuur ingesteld"],
+	[27,"Temperatuur boiler"],
+	[28,"Temperatuur moederbord"],
 	[29,"Vermogen Active",[
 							[11, "Vermogen 1"],
 							[12, "Vermogen 2"],
@@ -138,11 +138,11 @@ RecuperoInfo=[
 							[14, "Vermogen 4"],
 							[15, "Vermogen 5"],
 							]],
-	[32,"Heure du poele (0-23)"],
-	[33,"Minutes du poele (0-29)"],
-	[34,"Jour du poele (1-31)"],
-	[35,"Mois du poele (1-12)"],
-	[36,"Annee du poele"],
+	[32,"Kachel uur (0-23)"],
+	[33,"Kachel minuut (0-29)"],
+	[34,"Kachel dag (1-31)"],
+	[35,"Kachel maand (1-12)"],
+	[36,"Kachel jaar"],
 	[37,"Totaal bedrijfsuren (s)"],
 	[38,"Totaal bedrijfsuren op Vermogen 1 (s)"],
 	[39,"Totaal bedrijfsuren op Vermogen 2 (s)"],
@@ -158,32 +158,32 @@ RecuperoInfo=[
 						[11, "Bijna leeg"],
 						]],
 	[48,"Geluidseffect",[
-					[0, "Off"],
-					[1, "On"],
+					[0, "Uit"],
+					[1, "Aan"],
 					]],
 	[49,"Staat geluidseffecten",[
-					[0, "Off"],
-					[1, "On"],
+					[0, "Uit"],
+					[1, "Aan"],
 					]],
 	[50,"Sleep",[
-					[0, "Off"],
-					[1, "On"],
+					[0, "Uit"],
+					[1, "Aan"],
 					]],
 	[51,"Mode",[
 				[0, "Winter"],
 				[1, "Zomer"],
 				]],
-	[52,"Wfi sonde temperatuur 1"],
-	[53,"Wfi sonde temperatuur 2"],
-	[54,"Wfi sonde temperatuur 3"],
+	[52,"Wifi sonde temperatuur 1"],
+	[53,"Wifi sonde temperatuur 2"],
+	[54,"Wifi sonde temperatuur 3"],
 	[55,"Onbekend"],
 	[56,"Set Puffer"],
 	[57,"Set Boiler"],
 	[58,"Set Health"], # !==Hydro
 	[59,"Temperature retour"],
 	[60,"Antivries",[
-					[0, "Off"],
-					[1, "On"],
+					[0, "Uit"],
+					[1, "Aan"],
 					]],
 	]
 	

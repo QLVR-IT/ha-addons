@@ -5,7 +5,7 @@ Een verzameling van Addons voor Home Assistant.
 
 ## Add-ons
 
-This repository contains the following add-ons
+In deze Repository zitten de volgende Home Assistant Addons:
 
 ### [Maestro Gateway add-on](./maestro_gateway)
 

@@ -1,6 +1,6 @@
 {
   "name": "QLVR - Maestro Gateway",
-  "version": "1.0",
+  "version": "1.0.1",
   "slug": "qlvr_maestro_gateway",
   "description": "MQTT Gateway voor MCZ Pellet kachels",
   "url": "https://github.com/QLVR-IT/ha-addons/tree/main/maestro_gateway",

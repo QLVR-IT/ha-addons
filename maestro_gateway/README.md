@@ -1,7 +1,7 @@
 # Disclaimer
 This addon communicates with MCZ Maestro pellet stove API. It is provided as is with no implied warranty or liability. Please use with caution.
 I forked / copied this addon from https://github.com/SebLz/ha-addons. I wanted to translate the French terms to Dutch.
-Still work in progress.
+Still work in progress. Local plugin is untouched.
 
 # About the addon
 Maestro technology uses a Websocket to communicate with the pellet stove. It is used by the [MCZ Maestro](https://www.mcz.it/en/maestro-technology/) App and also by external thermostats.
@@ -9,7 +9,7 @@ After installing the addon, the pellet [state and commands](https://github.com/C
 This addon  embeds the code from https://github.com/Chibald/maestrogateway (local connection) and https://github.com/pipolaq/maestro (cloud connection) in a Home Assistant container.
 
 # Installation
-You can install this addon after adding my repository url (https://github.com/SebLz/ha-addons) in your HA instance (you can follow [the official guide](https://www.home-assistant.io/common-tasks/os#installing-third-party-add-ons). If you want to connect locally to the stove, make sure it is reachable from the device on which HA is running. To do this, you'll typically need to use a wifi dongle on your HA device to connect to the stove AP or setup a second (client) wifi interface on your router (can be done easily if you use OpenWRT for instance).
+You can install this addon after adding my repository url (https://github.com/QLVR-IT/ha-addons) in your HA instance (you can follow [the official guide](https://www.home-assistant.io/common-tasks/os#installing-third-party-add-ons). If you want to connect locally to the stove, make sure it is reachable from the device on which HA is running. To do this, you'll typically need to use a wifi dongle on your HA device to connect to the stove AP or setup a second (client) wifi interface on your router (can be done easily if you use OpenWRT for instance).
 
 # Configuration
 Available options enable user to set up [Chibald' maestrogateway config](https://github.com/Chibald/maestrogateway#configuration)
@@ -27,19 +27,23 @@ Examples of code you can use in you configuration.yaml assuming you have the add
 [MQTT Sensor](https://www.home-assistant.io/integrations/sensor.mqtt/) with all attributes
 ```
 - platform: mqtt
-  name: Maestro
+  name: "Pellet Kachel"
+  icon: mdi:fireplace
+  unique_id: "pellet_kachel_sensor"
   state_topic: "Maestro/State"
-  value_template: "{{ value_json['Etat du poele'] }}"
+  value_template: "{{ value_json['Kachel status'] }}"
   json_attributes_topic: "Maestro/State"
 ```
 
-All possible commands are descibed in the [commands.py](https://github.com/SebLz/ha-addons/blob/main/maestro_gateway/rootfs/maestro/local/commands.py) file. Here is an example below for turning On/Off the stove with a [MQTT Switch](https://www.home-assistant.io/integrations/switch.mqtt/) (command id: 34, type 'onoff40' meaning on = '1', off = '40'):
+All possible commands are descibed in the [commands.py](https://github.com/QLVR-IT/ha-addons/blob/main/maestro_gateway/rootfs/maestro/local/commands.py) file. Here is an example below for turning On/Off the stove with a [MQTT Switch](https://www.home-assistant.io/integrations/switch.mqtt/) (command id: 34, type 'onoff40' meaning on = '1', off = '40'):
 ```
 - platform: mqtt
-  name: Maestro
+  name: "Pellet Kachel"
+  icon: mdi:fireplace
+  unique_id: "pellet_kachel_switch"
   state_topic: "Maestro/State"
   value_template: >
-    {% if value_json['Etat du poele'] == 'Eteint' %}
+    {% if value_json['Kachel status'] == 'Uit' %}
     off
     {% else %}
     on

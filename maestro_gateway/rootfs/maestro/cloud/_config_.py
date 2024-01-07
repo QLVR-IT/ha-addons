@@ -3,17 +3,17 @@
 File for addressing the settings
 
 '''
-_MQTT_ip = '127.0.0.1'                  # Adresse IP du broker mqtt
-_MQTT_port = 1883                       # Port du broker mqtt
-_MQTT_authentication = False            # Mqtt use authentication
-_MQTT_user = ''                         # Mqtt User name
-_MQTT_pass = ''                         # Mqtt password
-_MQTT_TOPIC_SUB = 'SUBmcz'              # Topic général de souscription
-_MQTT_TOPIC_PUB = 'PUBmcz'              # Topic général de publication
-_MCZip = ''                             # Adresse IP du poêle
-_MCZport = '81'                         # Port du serveur embarqué du poele
-_MCZ_device_serial = "xxxxxxxxxxxxx"    # n° de série du pôele
-_MCZ_device_MAC = "xxxxxxxxxxxx"        # MAC du pôele
-_MCZ_App_URL = "http://app.mcz.it:9000" # URL du server MCZ
+_MQTT_ip = '127.0.0.1'                  # MQTT broker address
+_MQTT_port = 1883                       # MQTT broker port
+_MQTT_authentication = False            # MQTT use authentication
+_MQTT_user = ''                         # MQTT username
+_MQTT_pass = ''                         # MQTT password
+_MQTT_TOPIC_SUB = 'SUBmcz'              # Subscription Topic
+_MQTT_TOPIC_PUB = 'PUBmcz'              # Publish Topic
+_MCZip = ''                             # IP address Pelletstove
+_MCZport = '81'                         # Port Pelletstove
+_MCZ_device_serial = "xxxxxxxxxxxxx"    # Pelletstove serialnumber
+_MCZ_device_MAC = "xxxxxxxxxxxx"        # Pelletstove MAC address
+_MCZ_App_URL = "http://app.mcz.it:9000" # URL server MCZ
 _VERSION = '1.5'                        # Version
 _AUTHOR = 'Anthony L.'                  # Auteur
