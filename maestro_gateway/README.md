@@ -1,6 +1,7 @@
 # Disclaimer
 This addon communicates with MCZ Maestro pellet stove API. It is provided as is with no implied warranty or liability. Please use with caution.
 I forked / copied this addon from https://github.com/SebLz/ha-addons. I wanted to translate the French terms to Dutch.
+Still work in progress.
 
 # About the addon
 Maestro technology uses a Websocket to communicate with the pellet stove. It is used by the [MCZ Maestro](https://www.mcz.it/en/maestro-technology/) App and also by external thermostats.

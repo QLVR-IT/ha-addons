@@ -1,5 +1,4 @@
 # coding: utf-8
-
 '''
 Correspondence tables
 Rank 0 corresponds to the position of the information in the MAESTRO frame

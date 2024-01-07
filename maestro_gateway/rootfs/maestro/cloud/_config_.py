@@ -1,5 +1,4 @@
 # coding: utf-8
-
 '''
 File for addressing the settings
 
