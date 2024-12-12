@@ -21,7 +21,6 @@
     "ports": {
       "10050/tcp": 10050
     },
-    "image": "QLVR-IT/ha-addons-{arch}-zabbix-agent2",
     "options": {
       "server": "zabbix-server.local",
       "serveractive": "zabbix-server.local",
