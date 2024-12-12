@@ -1,0 +1,37 @@
+{
+    "name": "Zabbix Agent 2",
+    "version": "1.0",
+    "slug": "zabbix-agent2",
+    "description": "Zabbix Agent 2",
+    "url": "https://github.com/QLVR-IT/ha-addons/tree/main/zabbix-agent2",
+    "arch": [
+      "armhf",
+      "armv7",
+      "aarch64",
+      "amd64",
+      "i386"
+    ],
+    "startup": "system",
+    "boot": "auto",
+    "full_access": true,
+    "host_ipc": true,
+    "host_pid": true,
+    "host_network": true,
+    "docker_api": true,
+    "ports": {
+      "10050/tcp": 10050
+    },
+    "image": "QLVR-IT/ha-addons-{arch}-zabbix-agent2",
+    "options": {
+      "server": "zabbix-server.local",
+      "serveractive": "zabbix-server.local",
+      "hostname": "Home Assistant"
+    },
+    "schema": {
+      "server": "str",
+      "serveractive": "str",
+      "hostname": "str",
+      "tlspskidentity": "str?",
+      "tlspsksecret": "str?"
+    }
+  }
