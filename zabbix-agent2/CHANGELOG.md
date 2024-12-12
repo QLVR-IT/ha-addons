@@ -1,12 +1,17 @@
-# [1.0.3] - 2024-12-12
+# [1.0.4] - 2024-12-12
 
-## New
+## Added
+- Logging to /var/log/zabbix/zabbix_agent2.log
+- Debug level option
+- Addon_config map
+- Persistent config
 
-- First version based on Zabbix Agent2 Addon from https://github.com/pschmitt/home-assistant-addons/blob/main/zabbix-agent2
 
 ## Changed
 
 - Updated to Zabbix Agent2 7.2
-- Added logging to /var/log/zabbix/zabbix_agent2.log
-- Added debug level option
-- Added addon_config map
+
+
+## New
+
+- First version based on Zabbix Agent2 Addon from https://github.com/pschmitt/home-assistant-addons/blob/main/zabbix-agent2
