@@ -1,4 +1,4 @@
-# [1.0.2] - 2024-12-12
+# [1.0.3] - 2024-12-12
 
 ## New
 
@@ -9,3 +9,4 @@
 - Updated to Zabbix Agent2 7.2
 - Added logging to /var/log/zabbix/zabbix_agent2.log
 - Added debug level option
+- Added addon_config map

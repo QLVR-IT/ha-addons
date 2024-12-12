@@ -1,6 +1,6 @@
 {
     "name": "Zabbix Agent 2",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "slug": "zabbix-agent2",
     "description": "Zabbix Agent 2",
     "url": "https://github.com/QLVR-IT/ha-addons/tree/main/zabbix-agent2",
@@ -18,6 +18,13 @@
     "host_pid": true,
     "host_network": true,
     "docker_api": true,
+    "map": [
+      {
+        "type": "addon_config",
+        "read_only": false,
+        "path": "/addon_config"
+      }
+    ],
     "ports": {
       "10050/tcp": 10050
     },
