@@ -15,6 +15,11 @@ sed -i 's@^\(Server\)=.*@\1='"${ZABBIX_SERVER}"'@' "${ZABBIX_CONFIG_FILE}"
 sed -i 's@^\(ServerActive\)=.*@\1='"${ZABBIX_SERVER_ACTIVE}"'@' "${ZABBIX_CONFIG_FILE}"
 sed -i 's@^#\?\s\?\(Hostname\)=.*@\1='"${ZABBIX_HOSTNAME}"'@' "${ZABBIX_CONFIG_FILE}"
 
+# Configure logging
+sed -i 's@^#\?\s\?\(LogFile\)=.*@\1=/var/log/zabbix/zabbix_agent2.log@' "${ZABBIX_CONFIG_FILE}"
+sed -i 's@^#\?\s\?\(LogFileSize\)=.*@\1=10@' "${ZABBIX_CONFIG_FILE}"
+sed -i 's@^#\?\s\?\(DebugLevel\)=.*@\1=3@' "${ZABBIX_CONFIG_FILE}"
+
 # Add TLS PSK config if variables are used
 if [ "${ZABBIX_TLSPSK_IDENTITY}" != "null" ] && [ "${ZABBIX_TLSPSK_SECRET}" != "null" ]; then
   ZABBIX_TLSPSK_SECRET_FILE=/etc/zabbix/tls_secret
