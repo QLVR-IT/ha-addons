@@ -7,18 +7,11 @@ Een verzameling van Addons voor Home Assistant.
 
 In deze Repository zitten de volgende Home Assistant Addons:
 
-### [Maestro Gateway add-on](./maestro_gateway)
+### [Zabbix Agent2 add-on](./zabbix-agent2)
 
-![Supports aarch64 Architecture][aarch64-shield]
-![Supports amd64 Architecture][amd64-shield]
-![Supports armhf Architecture][armhf-shield]
-![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield]
 
-- Zabbix Agent2 7.2
 
 <!--
-
 Notes to developers after forking or using the github template feature:
 - While developing comment out the 'image' key from 'example/config.yaml' to make the supervisor build the addon
   - Remember to put this back when pushing up your changes.
