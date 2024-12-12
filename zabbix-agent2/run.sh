@@ -8,6 +8,7 @@ ZABBIX_SERVER_ACTIVE=$(jq --raw-output ".serveractive" "${CONFIG_PATH}")
 ZABBIX_HOSTNAME=$(jq --raw-output ".hostname" "${CONFIG_PATH}")
 ZABBIX_TLSPSK_IDENTITY=$(jq --raw-output ".tlspskidentity" "${CONFIG_PATH}")
 ZABBIX_TLSPSK_SECRET=$(jq --raw-output ".tlspsksecret" "${CONFIG_PATH}")
+DEBUG_LEVEL=$(jq --raw-output ".debug_level // 3" "${CONFIG_PATH}")
 
 # Update zabbix-agent config
 ZABBIX_CONFIG_FILE=/etc/zabbix/zabbix_agent2.conf
@@ -15,10 +16,9 @@ sed -i 's@^\(Server\)=.*@\1='"${ZABBIX_SERVER}"'@' "${ZABBIX_CONFIG_FILE}"
 sed -i 's@^\(ServerActive\)=.*@\1='"${ZABBIX_SERVER_ACTIVE}"'@' "${ZABBIX_CONFIG_FILE}"
 sed -i 's@^#\?\s\?\(Hostname\)=.*@\1='"${ZABBIX_HOSTNAME}"'@' "${ZABBIX_CONFIG_FILE}"
 
-# Configure logging
-sed -i 's@^#\?\s\?\(LogFile\)=.*@\1=/var/log/zabbix/zabbix_agent2.log@' "${ZABBIX_CONFIG_FILE}"
-sed -i 's@^#\?\s\?\(LogFileSize\)=.*@\1=10@' "${ZABBIX_CONFIG_FILE}"
-sed -i 's@^#\?\s\?\(DebugLevel\)=.*@\1=3@' "${ZABBIX_CONFIG_FILE}"
+# Configure logging to stdout
+sed -i 's@^#\?\s\?\(LogType\)=.*@\1=console@' "${ZABBIX_CONFIG_FILE}"
+sed -i 's@^#\?\s\?\(DebugLevel\)=.*@\1='"${DEBUG_LEVEL}"'@' "${ZABBIX_CONFIG_FILE}"
 
 # Add TLS PSK config if variables are used
 if [ "${ZABBIX_TLSPSK_IDENTITY}" != "null" ] && [ "${ZABBIX_TLSPSK_SECRET}" != "null" ]; then

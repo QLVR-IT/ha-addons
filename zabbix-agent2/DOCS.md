@@ -23,3 +23,15 @@ Follow these steps to get the add-on installed on your system:
 ## How to use
 
 _Nog geen documentatie beschikbaar._
+
+## Logging
+
+The debug levels in Zabbix are:
+- 0: basic information
+- 1: critical information
+- 2: error information
+- 3: warnings
+- 4: debugging (produces lots of information)
+- 5: extended debugging (produces even more information)
+
+The debug level can be set in the options of the add-on.

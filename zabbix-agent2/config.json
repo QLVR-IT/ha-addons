@@ -1,6 +1,6 @@
 {
     "name": "Zabbix Agent 2",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "slug": "zabbix-agent2",
     "description": "Zabbix Agent 2",
     "url": "https://github.com/QLVR-IT/ha-addons/tree/main/zabbix-agent2",
