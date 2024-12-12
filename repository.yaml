@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
 name: QLVR-IT Addons
-url: 'https://github.com/QLVR-IT/ha-addons'
-maintainer: QLVR-IT
+url: https://github.com/QLVR-IT/ha-addons
+maintainer: QLVR-IT <info@qlvr.nl>
