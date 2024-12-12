@@ -15,7 +15,7 @@ In deze Repository zitten de volgende Home Assistant Addons:
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
-MCZ Maestro pellet stove gateway for Home Assistant
+- Zabbix Agent2 7.2
 
 <!--
 
