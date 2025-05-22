@@ -6,7 +6,7 @@ FROM ${BUILD_BASE_IMAGE} as builder
 
 FROM alpine:3.21
 
-LABEL maintainer "Stefan de Wit <stefan@qlvr.nl>"
+LABEL maintainer "Stefan de Wit <stefan@qlvr-it.nl>" \
 
 ENV LANG C.UTF-8
 
