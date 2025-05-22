@@ -1,4 +1,4 @@
-#!/usr/bin/env bashio
+#!/usr/bin/with-contenv bashio
 
 # Config ophalen
 ZABBIX_SERVER=$(bashio::config 'server')
@@ -38,5 +38,5 @@ if bashio::config.has_value 'tlspskidentity'; then
   bashio::config.sed "TLSAccept=psk" "${CFG_FILE}"
 fi
 
-# Start Zabbix Agent 2 als gebruiker zabbix
+# Laat s6 overlay de user-switch veilig doen
 exec s6-setuidgid zabbix zabbix_agent2 -f
