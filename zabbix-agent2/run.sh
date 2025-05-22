@@ -39,4 +39,4 @@ if bashio::config.has_value 'tlspskidentity'; then
 fi
 
 # Laat s6 overlay de user-switch veilig doen
-exec s6-setuidgid zabbix zabbix_agent2 -f
+exec su-exec zabbix:zabbix zabbix_agent2 -f
