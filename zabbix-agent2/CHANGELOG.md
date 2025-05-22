@@ -1,3 +1,15 @@
+# [1.2.0] - 2025-05-22
+
+## Changed
+
+- Simplified Multi-stage builder in Dockerfile
+- Added labels as described on Home Assistant Developers
+- Using Bashio for parsing in run.sh
+- Changed location for storage to `/data` in run.sh
+- Fixed writing to the same key `Plugins.PostgreSQL.System.Path` instead of `Plugins.MongoDB.System.Path`
+- Corrected permissions of writing TLSPSK Secret
+
+
 # [1.0.4] - 2024-12-12
 
 ## Added
