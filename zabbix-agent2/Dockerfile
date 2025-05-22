@@ -8,7 +8,7 @@ LABEL io.hass.arch="${BUILD_ARCH}"
 LABEL io.hass.version="${BUILD_VERSION}"
 
 # Tools
-RUN apk add --no-cache jq tzdata
+RUN apk add --no-cache jq tzdata s6-overlay
 
 # Copy run-script en s6-service
 COPY run.sh /usr/bin/run.sh

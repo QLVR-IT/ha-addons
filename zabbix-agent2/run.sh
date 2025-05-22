@@ -38,4 +38,5 @@ if bashio::config.has_value 'tlspskidentity'; then
   bashio::config.sed "TLSAccept=psk" "${CFG_FILE}"
 fi
 
-exec su-exec zabbix zabbix_agent2 -f
+# Start Zabbix Agent 2 als gebruiker zabbix
+exec s6-setuidgid zabbix zabbix_agent2 -f
