@@ -1,4 +1,4 @@
-# [1.2.5] - 2025-05-22
+# [1.2.6] - 2025-05-22
 
 ## Changed
 
@@ -8,7 +8,6 @@
 - Changed location for storage to `/data` in run.sh
 - Fixed writing to the same key `Plugins.PostgreSQL.System.Path` instead of `Plugins.MongoDB.System.Path`
 - Corrected permissions of writing TLSPSK Secret
-- Added s6-service definition
 
 
 # [1.0.4] - 2024-12-12

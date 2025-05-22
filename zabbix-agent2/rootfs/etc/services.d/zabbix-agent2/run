@@ -1,3 +1,0 @@
-#!/usr/bin/with-contenv bashio
-# s6-service wrapper; draait ná de s6-init
-exec /usr/local/bin/run.sh
