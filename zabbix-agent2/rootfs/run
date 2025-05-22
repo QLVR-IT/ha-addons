@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+# Dit script draait als één van de s6-services
+exec /usr/bin/run.sh
