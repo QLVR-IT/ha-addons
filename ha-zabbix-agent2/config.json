@@ -1,5 +1,5 @@
 {
-  "name": "HA Zabbix Agent 2",
+  "name": "HA Zabbix Agent2",
   "version": "0.0.1",
   "slug": "ha_zabbix_agent2",
   "description": "Zabbix Agent 2 for Home Assistant",
