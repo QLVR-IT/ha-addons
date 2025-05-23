@@ -41,4 +41,5 @@ if [ -n "$Z_TLS_ID" ] && [ -n "$Z_TLS_SECRET" ]; then
 fi
 
 echo "[INFO] Start Zabbix Agent 2 als gebruiker zabbix…"
-exec su-exec zabbix:zabbix /usr/sbin/zabbix_agent2 -f
+
+exec su-exec zabbix:zabbix zabbix_agent2 -f
