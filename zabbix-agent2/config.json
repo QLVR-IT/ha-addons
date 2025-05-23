@@ -1,4 +1,5 @@
 {
+  "init": false,  
   "name": "Zabbix Agent2",
   "version": "0.0.1",
   "slug": "zabbix_agent2",
