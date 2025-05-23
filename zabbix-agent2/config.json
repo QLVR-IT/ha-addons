@@ -27,6 +27,5 @@
 },
   "ports": {
     "10050/tcp": 10050
-  },
-  "image": "zabbix/zabbix-agent2:alpine-7.2-latest"
+  }
 }
