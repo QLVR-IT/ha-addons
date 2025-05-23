@@ -1,39 +1,44 @@
-#!/usr/bin/env bashio
+#!/usr/bin/env ash
+# shellcheck shell=ash
 
-# — Config inladen —
-ZABBIX_SERVER=$(bashio::config 'server')
-ZABBIX_SERVER_ACTIVE=$(bashio::config 'serveractive')
-ZABBIX_HOSTNAME=$(bashio::config 'hostname')
-TLS_ID=$(bashio::config 'tlspskidentity')
-TLS_SECRET=$(bashio::config 'tlspsksecret')
-DEBUG_LEVEL=$(bashio::config 'debug_level')
+CONFIG="/data/options.json"
 
-# — Persistente config in /data —
-CFG_DIR="/data"
-CFG_FILE="$CFG_DIR/zabbix_agent2.conf"
-DEF_FILE="/etc/zabbix/zabbix_agent2.conf"
+# Lees opties met jq
+Z_SERVER=$(jq -r '.server'          $CONFIG)
+Z_SERVERACTIVE=$(jq -r '.serveractive' $CONFIG)
+Z_HOSTNAME=$(jq -r '.hostname'        $CONFIG)
+Z_TLS_ID=$(jq -r '.tlspskidentity // empty' $CONFIG)
+Z_TLS_SECRET=$(jq -r '.tlspsksecret    // empty' $CONFIG)
+DEBUG=$(jq -r '.debug_level // 3'     $CONFIG)
 
-bashio::log.info "Initialiseer configuratie…"
-bashio::fs.directory_exists "$CFG_DIR" || mkdir -p "$CFG_DIR"
-bashio::fs.file_exists "$CFG_FILE" || cp "$DEF_FILE" "$CFG_FILE"
-ln -sf "$CFG_FILE" "$DEF_FILE"
+echo "[INFO] Initialiseren configuratie…"
 
-# — Pas config aan —
-bashio::config.sed "Server=${ZABBIX_SERVER}" "$CFG_FILE"
-bashio::config.sed "ServerActive=${ZABBIX_SERVER_ACTIVE}" "$CFG_FILE"
-bashio::config.sed "Hostname=${ZABBIX_HOSTNAME}" "$CFG_FILE"
-bashio::config.sed "LogType=console" "$CFG_FILE"
-bashio::config.sed "DebugLevel=${DEBUG_LEVEL}" "$CFG_FILE"
-
-# — TLS PSK indien opgegeven —
-if bashio::config.has_value 'tlspskidentity'; then
-  echo "${TLS_SECRET}" > "$CFG_DIR/tls_secret"
-  chmod 600 "$CFG_DIR/tls_secret"
-  bashio::config.sed "TLSPSKIdentity=${TLS_ID}" "$CFG_FILE"
-  bashio::config.sed "TLSPSKFile=${CFG_DIR}/tls_secret" "$CFG_FILE"
-  bashio::config.sed "TLSConnect=psk" "$CFG_FILE"
-  bashio::config.sed "TLSAccept=psk" "$CFG_FILE"
+# Persistent config-file
+PERSIST_CONF="/data/zabbix_agent2.conf"
+if [ ! -f "$PERSIST_CONF" ]; then
+  cp /etc/zabbix/zabbix_agent2.conf "$PERSIST_CONF"
 fi
 
-# — Start Zabbix Agent 2 onder zabbix-gebruiker —
-exec su-exec zabbix:zabbix zabbix_agent2 -f
+# Symlink zodat agent de persistente config gebruikt
+rm -f /etc/zabbix/zabbix_agent2.conf
+ln -s "$PERSIST_CONF" /etc/zabbix/zabbix_agent2.conf
+
+# Pas configuratie aan
+sed -i "s@^Server=.*@Server=$Z_SERVER@"           "$PERSIST_CONF"
+sed -i "s@^ServerActive=.*@ServerActive=$Z_SERVERACTIVE@" "$PERSIST_CONF"
+sed -i "s@^Hostname=.*@Hostname=$Z_HOSTNAME@"     "$PERSIST_CONF"
+sed -i "s@^LogType=.*@LogType=console@"           "$PERSIST_CONF"
+sed -i "s@^DebugLevel=.*@DebugLevel=$DEBUG@"      "$PERSIST_CONF"
+
+# TLS PSK indien aanwezig
+if [ -n "$Z_TLS_ID" ] && [ -n "$Z_TLS_SECRET" ]; then
+  echo "$Z_TLS_SECRET" > /data/tls_secret
+  chmod 600 /data/tls_secret
+  sed -i "s@^TLSPSKIdentity=.*@TLSPSKIdentity=$Z_TLS_ID@"     "$PERSIST_CONF"
+  sed -i "s@^TLSPSKFile=.*@TLSPSKFile=/data/tls_secret@"     "$PERSIST_CONF"
+  sed -i "s@^TLSConnect=.*@TLSConnect=psk@"                  "$PERSIST_CONF"
+  sed -i "s@^TLSAccept=.*@TLSAccept=psk@"                    "$PERSIST_CONF"
+fi
+
+echo "[INFO] Start Zabbix Agent 2 als gebruiker zabbix…"
+exec su-exec zabbix:zabbix /usr/sbin/zabbix_agent2 -f
