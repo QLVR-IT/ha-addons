@@ -3,43 +3,69 @@
 
 CONFIG="/data/options.json"
 
-# Lees opties met jq
-Z_SERVER=$(jq -r '.server'          $CONFIG)
-Z_SERVERACTIVE=$(jq -r '.serveractive' $CONFIG)
-Z_HOSTNAME=$(jq -r '.hostname'        $CONFIG)
-Z_TLS_ID=$(jq -r '.tlspskidentity // empty' $CONFIG)
-Z_TLS_SECRET=$(jq -r '.tlspsksecret    // empty' $CONFIG)
-DEBUG=$(jq -r '.debug_level // 3'     $CONFIG)
+log() {
+  # type, message
+  local level=$1; shift
+  printf '%s [%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$level" "$*"
+}
 
-echo "[INFO] Initialiseren configuratie…"
+# — Config inladen —
+Z_SERVER=$(jq -r '.server'           "$CONFIG")
+Z_SERVERACTIVE=$(jq -r '.serveractive' "$CONFIG")
+Z_HOSTNAME=$(jq -r '.hostname'         "$CONFIG")
+Z_TLS_ID=$(jq -r '.tlspskidentity // empty' "$CONFIG")
+Z_TLS_SECRET=$(jq -r '.tlspsksecret    // empty' "$CONFIG")
+DEBUG=$(jq -r '.debug_level // 3'      "$CONFIG")
 
-# Persistent config-file
+log INFO "Initialiseren configuratie…"
+
+# — Persistente config —
 PERSIST_CONF="/data/zabbix_agent2.conf"
 if [ ! -f "$PERSIST_CONF" ]; then
   cp /etc/zabbix/zabbix_agent2.conf "$PERSIST_CONF"
+  log INFO "Standaardconfig gekopieerd naar $PERSIST_CONF"
 fi
 
-# Symlink zodat agent de persistente config gebruikt
-rm -f /etc/zabbix/zabbix_agent2.conf
-ln -s "$PERSIST_CONF" /etc/zabbix/zabbix_agent2.conf
+ln -sf "$PERSIST_CONF" /etc/zabbix/zabbix_agent2.conf
 
-# Pas configuratie aan
-sed -i "s@^Server=.*@Server=$Z_SERVER@"           "$PERSIST_CONF"
-sed -i "s@^ServerActive=.*@ServerActive=$Z_SERVERACTIVE@" "$PERSIST_CONF"
-sed -i "s@^Hostname=.*@Hostname=$Z_HOSTNAME@"     "$PERSIST_CONF"
-sed -i "s@^LogType=.*@LogType=console@"           "$PERSIST_CONF"
-sed -i "s@^DebugLevel=.*@DebugLevel=$DEBUG@"      "$PERSIST_CONF"
+# — Pas configuratie aan —
+for kv in \
+  "Server=$Z_SERVER" \
+  "ServerActive=$Z_SERVERACTIVE" \
+  "Hostname=$Z_HOSTNAME" \
+  "LogType=console" \
+  "DebugLevel=$DEBUG"
+do
+  key=${kv%%=*}
+  val=${kv#*=}
+  sed -i "s@^$key=.*@$key=$val@" "$PERSIST_CONF"
+  log DEBUG "Instelling $key op $val"
+done
 
-# TLS PSK indien aanwezig
+# — TLS PSK indien aanwezig —
 if [ -n "$Z_TLS_ID" ] && [ -n "$Z_TLS_SECRET" ]; then
   echo "$Z_TLS_SECRET" > /data/tls_secret
   chmod 600 /data/tls_secret
-  sed -i "s@^TLSPSKIdentity=.*@TLSPSKIdentity=$Z_TLS_ID@"     "$PERSIST_CONF"
-  sed -i "s@^TLSPSKFile=.*@TLSPSKFile=/data/tls_secret@"     "$PERSIST_CONF"
-  sed -i "s@^TLSConnect=.*@TLSConnect=psk@"                  "$PERSIST_CONF"
-  sed -i "s@^TLSAccept=.*@TLSAccept=psk@"                    "$PERSIST_CONF"
+  for kv in \
+    "TLSPSKIdentity=$Z_TLS_ID" \
+    "TLSPSKFile=/data/tls_secret" \
+    "TLSConnect=psk" \
+    "TLSAccept=psk"
+  do
+    key=${kv%%=*}
+    val=${kv#*=}
+    sed -i "s@^$key=.*@$key=$val@" "$PERSIST_CONF"
+    log DEBUG "TLS-config $key op $val"
+  done
+  log INFO "TLS PSK geconfigureerd"
 fi
 
-echo "[INFO] Start Zabbix Agent 2 als gebruiker zabbix…"
+log INFO "Start Zabbix Agent 2 als gebruiker zabbix…"
 
-exec su-exec zabbix:zabbix zabbix_agent2 -f
+# — Wrap de agent zodat stdout/stderr door timestamp-pijp gaan —
+exec sh -c '
+  su-exec zabbix:zabbix zabbix_agent2 -f 2>&1 \
+    | while IFS= read -r line; do
+        printf "%s %s\n" "$(date "+%Y-%m-%d %H:%M:%S")" "$line"
+      done
+'
