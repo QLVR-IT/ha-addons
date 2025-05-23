@@ -1,0 +1,29 @@
+{
+  "name": "HA Zabbix Agent 2",
+  "version": "0.0.1",
+  "slug": "ha_zabbix_agent2",
+  "description": "Zabbix Agent 2 for Home Assistant",
+  "arch": ["aarch64", "amd64", "armv7"],
+  "startup": "services",
+  "boot": "auto",
+  "options": {
+    "server": "zabbix.example.com",
+    "serveractive": "zabbix.example.com",
+    "hostname": "HomeAssistant",
+    "tlspsk_identity": "",
+    "tlspsk_secret": "",
+    "debug_level": 3
+  },
+  "schema": {
+    "server": "str",
+    "serveractive": "str",
+    "hostname": "str",
+    "tlspsk_identity": "str?",
+    "tlspsk_secret": "str?",
+    "debug_level": "int"
+  },
+  "ports": {
+    "10050/tcp": 10050
+  },
+  "image": "zabbix/zabbix-agent2:alpine-7.2-latest"
+}
