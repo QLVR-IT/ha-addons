@@ -1,6 +1,6 @@
 ## Home Assistant Add-on: Zabbix Agent 2
 
-Enhanceert de monitoring van je Home Assistant-installatie met [Zabbix Agent 2](https://www.zabbix.com/documentation/current/en/manual/concepts/agent2).
+Monitoring van Home Assistant met [Zabbix Agent 2](https://www.zabbix.com/documentation/current/en/manual/concepts/agent2).
 
 ---
 
