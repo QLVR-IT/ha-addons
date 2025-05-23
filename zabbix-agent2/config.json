@@ -1,8 +1,9 @@
 {
-  "name": "HA Zabbix Agent2",
+  "name": "Zabbix Agent2",
   "version": "0.0.1",
-  "slug": "ha_zabbix_agent2",
-  "description": "Zabbix Agent 2 for Home Assistant",
+  "slug": "zabbix_agent2",
+  "description": "Zabbix Agent2 for Home Assistant",
+  "url": "https://github.com/QLVR-IT/ha-addons/tree/main/zabbix-agent2",
   "arch": ["aarch64", "amd64", "armv7"],
   "startup": "services",
   "boot": "auto",
