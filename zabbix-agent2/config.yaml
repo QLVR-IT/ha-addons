@@ -29,8 +29,8 @@ schema:
   server: str
   serveractive: str
   hostname: str
-  tlspsk_identity: "str?"
-  tlspsk_secret: "str?"
+  tlspsk_identity: str
+  tlspsk_secret: str
   debug_level: int
 ports:
   "10050/tcp": 10050
