@@ -1,14 +1,20 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+set -e
 
-CONFIG_PATH=/data/options.json
+bashio::log.info '---===  Home Assistant Zabbix Agent2 by QLVR-IT  ===---'
+bashio::log.info '-------------------------------------------------------'
 
-SERVER=$(jq -r '.server' $CONFIG_PATH)
-SERVERACTIVE=$(jq -r '.serveractive' $CONFIG_PATH)
-HOSTNAME=$(jq -r '.hostname' $CONFIG_PATH)
-TLSPSK_IDENTITY=$(jq -r '.tlspsk_identity' $CONFIG_PATH)
-TLSPSK_SECRET=$(jq -r '.tlspsk_secret' $CONFIG_PATH)
-DEBUG_LEVEL=$(jq -r '.debug_level' $CONFIG_PATH)
-LISTEN_PORT=$(jq -r '.listen_port' $CONFIG_PATH)
+SERVER=$(bashio::config 'server')
+SERVERACTIVE=$(bashio::config 'serveractive')
+HOSTNAME=$(bashio::config 'hostname')
+TLSPSK_IDENTITY=$(bashio::config 'tlspsk_identity')
+TLSPSK_SECRET=$(bashio::config 'tlspsk_secret')
+DEBUG_LEVEL=$(bashio::config 'debug_level')
+
+
+bashio::log.info 'Zabbix Server: ${SERVER}'
+bashio::log.info 'Hostname:      ${HOSTNAME}'
 
 cat <<EOF > /etc/zabbix/zabbix_agent2.conf
 Server=$SERVER
@@ -19,10 +25,19 @@ TLSAccept=psk
 TLSPSKIdentity=$TLSPSK_IDENTITY
 TLSPSKFile=/etc/zabbix/zabbix_agent2.psk
 DebugLevel=$DEBUG_LEVEL
-ListenPort=$LISTEN_PORT
+LogType=console
+LogFile=
+AllowKey=system.run[*]
+Plugins.SystemRun.LogRemoteCommands=1
+RefreshActiveChecks=30
+DenyKey=vfs.file.contents["/sys/class/net/*/speed"]
+DenyKey=system.sw.packages.get
 EOF
 
 echo "$TLSPSK_SECRET" > /etc/zabbix/zabbix_agent2.psk
 chmod 600 /etc/zabbix/zabbix_agent2.psk
+
+bashio::log.info '-------------------------------------------------------'
+bashio::log.info 'Starting Zabbix Agent 2...'
 
 exec /usr/sbin/zabbix_agent2 -f -c /etc/zabbix/zabbix_agent2.conf
