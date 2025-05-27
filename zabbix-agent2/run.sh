@@ -13,8 +13,8 @@ TLSPSK_SECRET=$(bashio::config 'tlspsk_secret')
 DEBUG_LEVEL=$(bashio::config 'debug_level')
 
 
-bashio::log.info 'Zabbix Server: ${SERVER}'
-bashio::log.info 'Hostname:      ${HOSTNAME}'
+bashio::log.info "Zabbix Server: ${SERVER}"
+bashio::log.info "Hostname:      ${HOSTNAME}"
 
 cat <<EOF > /etc/zabbix/zabbix_agent2.conf
 Server=$SERVER
