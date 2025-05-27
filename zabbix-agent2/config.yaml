@@ -1,0 +1,36 @@
+init: false
+version: 0.0.13
+name: HA Zabbix Agent2
+slug: ha_zabbix_agent2
+description: Zabbix Agent2 Addon for Home Assistant
+url: https://github.com/QLVR-IT/ha-addons/tree/main/zabbix-agent2
+advanced: true
+arch:
+  - aarch64
+  - amd64
+host_network: true
+host_ipc: true
+host_pid: true
+full_access: true
+host_dbus: true
+docker_api: true
+hassio_api: true
+homeassistant_api: true
+startup: system
+boot: auto
+options:
+  server: zabbix.example.com
+  serveractive: zabbix.example.com
+  hostname: HomeAssistant
+  tlspsk_identity: ""
+  tlspsk_secret: ""
+  debug_level: 3
+schema:
+  server: str
+  serveractive: str
+  hostname: str
+  tlspsk_identity: "str?"
+  tlspsk_secret: "str?"
+  debug_level: int
+ports:
+  "10050/tcp": 10050
