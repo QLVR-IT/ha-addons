@@ -1,7 +1,7 @@
 init: false
-version: 0.0.13
-name: HA Zabbix Agent2
-slug: ha_zabbix_agent2
+version: 2.0.0
+name: Zabbix Agent2
+slug: zabbix_agent2
 description: Zabbix Agent2 Addon for Home Assistant
 url: https://github.com/QLVR-IT/ha-addons/tree/main/zabbix-agent2
 advanced: true
