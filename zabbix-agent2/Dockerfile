@@ -11,9 +11,8 @@ FROM ${BUILD_FROM}
 RUN apk add --no-cache ca-certificates bash \
  && mkdir -p /etc/zabbix /usr/lib/zabbix
 
-# Copy agent2 binary and plugins from Zabbix-stage
+# Copy agent2 binary from Zabbix-stage
 COPY --from=zbx /usr/sbin/zabbix_agent2 /usr/sbin/zabbix_agent2
-COPY --from=zbx /usr/lib/zabbix /usr/lib/zabbix
 
 # Copy run script
 COPY run.sh /
