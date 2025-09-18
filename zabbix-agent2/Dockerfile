@@ -1,7 +1,7 @@
 # Stage offical Zabbix Agent2 (7.2.x) on Alpine
 FROM zabbix/zabbix-agent2:alpine-7.2-latest AS zbx
 
-# Home Assistant base
+# Home Assistant Community Add-on: Base Image
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
