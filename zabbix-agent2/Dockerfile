@@ -8,7 +8,7 @@ FROM zabbix/zabbix-agent2:alpine-7.2-latest AS zbx
 FROM ${BUILD_FROM}
 
 # Base tools/certs and paths
-RUN apk add --no-cache ca-certificates bash \
+RUN apk add --no-cache ca-certificates pcre2 bash \
  && mkdir -p /etc/zabbix /usr/lib/zabbix
 
 # Copy agent2 binary from Zabbix-stage
