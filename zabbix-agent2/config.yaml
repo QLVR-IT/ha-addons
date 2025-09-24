@@ -1,5 +1,5 @@
 init: false
-version: 2.1.4
+version: 2.2.0
 name: Zabbix Agent2
 slug: zabbix_agent2
 description: Zabbix Agent2 Addon for Home Assistant
