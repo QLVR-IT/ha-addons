@@ -1,3 +1,9 @@
+# [2.2.0] - 2025-09-24
+
+## Update
+
+- Update Zabbix Agent2 to version 7.4 from official Zabbix Agent2 Apline image
+
 # [2.1.4] - 2025-09-18
 
 ## Update
