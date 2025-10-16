@@ -1,3 +1,9 @@
+# [2.3.0] - 2025-10-16
+
+## Update
+
+- Update to Home Assistant Community Add-on: Base Image 18.2.1
+
 # [2.2.0] - 2025-09-24
 
 ## Update
