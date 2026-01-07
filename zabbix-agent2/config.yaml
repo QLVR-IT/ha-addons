@@ -1,5 +1,5 @@
 init: false
-version: 2.3.0
+version: 2.4.0
 name: Zabbix Agent2
 slug: zabbix_agent2
 description: Zabbix Agent2 Addon for Home Assistant
@@ -8,7 +8,6 @@ advanced: true
 arch:
   - aarch64
   - amd64
-  - armv7
 host_network: true
 host_ipc: true
 host_pid: true
